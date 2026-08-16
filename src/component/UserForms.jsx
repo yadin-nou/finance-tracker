@@ -47,6 +47,7 @@ export const UserForms = () => {
     if (userData.password !== userData.cmpassword) {
       return toast.error("Password is not match");
     }
+    toast.success("Match , data sent");
     console.log(userData);
   };
 
