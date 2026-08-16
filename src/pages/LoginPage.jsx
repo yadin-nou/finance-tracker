@@ -17,7 +17,7 @@ export const LoginPage = () => {
             <h3>Login...!</h3>
             <LoginForms />
           </Col>
-          <Col md="6">
+          <Col md="6" className="pt-5">
             <TipContent />
           </Col>
         </Row>
