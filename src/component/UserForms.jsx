@@ -4,7 +4,7 @@ import FormTemplate from "./FormTemplate";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export const UserForms = () => {
+export const UserForms = ({ signUpUser }) => {
   const [userData, setUserData] = useState({});
 
   const fromTPL = [
@@ -47,8 +47,7 @@ export const UserForms = () => {
     if (userData.password !== userData.cmpassword) {
       return toast.error("Password is not match");
     }
-    toast.success("Match , data sent");
-    console.log(userData);
+    signUpUser(userData);
   };
 
   return (
