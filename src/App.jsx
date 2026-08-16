@@ -5,6 +5,7 @@ import "./App.css";
 import SignUp from "./pages/SignUp";
 import { Route, Routes } from "react-router-dom";
 import { DefaultLayouts } from "./component/Layout/DefaultLayouts";
+import { LoginPage } from "./pages/LoginPage";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<DefaultLayouts />}>
             <Route index element={""} />
-            <Route path="login" element={""} />
+            <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
         </Routes>

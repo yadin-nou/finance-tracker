@@ -15,7 +15,7 @@ export const HeaderLayouts = () => {
             <Link to="/signup" className="nav-link">
               <IoPersonAddOutline /> Signup
             </Link>
-            <Link to="/" className="nav-link">
+            <Link to="/login" className="nav-link">
               <CiLogin /> Login
             </Link>
           </Nav>
