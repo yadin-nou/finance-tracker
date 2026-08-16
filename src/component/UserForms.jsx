@@ -1,8 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormTemplate from "./FormTemplate";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
-export const UserForm = () => {
+export const UserForms = () => {
+  const [userData, setUserData] = useState({});
+
   const fromTPL = [
     {
       type: "text",
@@ -34,17 +38,23 @@ export const UserForm = () => {
       name: "cmpassword",
     },
   ];
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password, cmpassword } = e.target;
-    console.log(name, email, password, cmpassword);
+    if (userData.password !== userData.cmpassword) {
+      return toast.error("Password is not match");
+    }
+    console.log(userData);
   };
 
   return (
     <div>
       <Form onSubmit={handleOnSubmit}>
         {fromTPL.map((frm) => (
-          <FormTemplate key={frm.name} {...frm} />
+          <FormTemplate key={frm.name} {...frm} onChange={handleOnChange} />
         ))}
         <div className="d-grid">
           {/* Explicitly set type="submit" */}

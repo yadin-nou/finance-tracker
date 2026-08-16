@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { TipContent } from "../component/TipContent";
-import { UserForm } from "../component/userForm";
+import { UserForms } from "../component/UserForms";
 
 function SignUp() {
   return (
@@ -16,7 +16,7 @@ function SignUp() {
             <TipContent />
           </Col>
           <Col md="6">
-            <UserForm />
+            <UserForms />
           </Col>
         </Row>
       </Container>
