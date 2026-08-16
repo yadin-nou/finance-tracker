@@ -24,7 +24,7 @@ function SignUp() {
           <Col md="6">
             <TipContent />
           </Col>
-          <Col md="6">
+          <Col md="6" className="border border-light p-3">
             <h3>Sign Up...!</h3>
             <UserForms signUpUser={signUpUser} />
           </Col>
