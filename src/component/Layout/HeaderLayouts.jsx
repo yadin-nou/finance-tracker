@@ -2,7 +2,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
-
+import { CiLogin } from "react-icons/ci";
+import { IoPersonAddOutline } from "react-icons/io5";
 export const HeaderLayouts = () => {
   return (
     <Navbar expand="lg" className="bg-body-dark" variant="dark">
@@ -11,11 +12,11 @@ export const HeaderLayouts = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link to="/" className="nav-link">
-              Login
-            </Link>
             <Link to="/signup" className="nav-link">
-              Signup
+              <IoPersonAddOutline /> Signup
+            </Link>
+            <Link to="/" className="nav-link">
+              <CiLogin /> Login
             </Link>
           </Nav>
         </Navbar.Collapse>

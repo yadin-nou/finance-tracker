@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { FcMoneyTransfer } from "react-icons/fc";
 export const TipContent = () => {
   const [index, setIndex] = useState(0);
   const financialTips = [
@@ -53,7 +53,10 @@ export const TipContent = () => {
   const { tip, person } = financialTips[index];
   return (
     <div className="text-justify">
-      <div className="pt-5">{tip}</div>
+      <div>
+        <FcMoneyTransfer style={{ fontSize: "10rem" }} />
+      </div>
+      <div className="pt-2">{tip}</div>
       <div>By: {person}</div>
     </div>
   );
