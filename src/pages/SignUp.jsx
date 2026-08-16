@@ -12,10 +12,10 @@ function SignUp() {
         style={{ background: "#0f0f0f64" }}
       >
         <Row>
-          <Col>
+          <Col md="6">
             <TipContent />
           </Col>
-          <Col>
+          <Col md="6">
             <UserForm />
           </Col>
         </Row>

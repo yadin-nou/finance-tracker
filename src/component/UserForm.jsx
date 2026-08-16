@@ -34,15 +34,21 @@ export const UserForm = () => {
       name: "cmpassword",
     },
   ];
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, password, cmpassword } = e.target;
+    console.log(name, email, password, cmpassword);
+  };
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleOnSubmit}>
         {fromTPL.map((frm) => (
           <FormTemplate key={frm.name} {...frm} />
         ))}
         <div className="d-grid">
-          <Button variant="primary" type="submit">
+          {/* Explicitly set type="submit" */}
+          <Button type="submit" variant="primary">
             Submit
           </Button>
         </div>
