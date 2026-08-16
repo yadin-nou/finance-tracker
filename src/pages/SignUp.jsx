@@ -19,11 +19,13 @@ function SignUp() {
         className="p-5 mt-5"
         style={{ background: "#0f0f0f64" }}
       >
+        {" "}
         <Row>
           <Col md="6">
             <TipContent />
           </Col>
           <Col md="6">
+            <h3>Sign Up...!</h3>
             <UserForms signUpUser={signUpUser} />
           </Col>
         </Row>

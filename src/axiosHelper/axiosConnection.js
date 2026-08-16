@@ -3,12 +3,12 @@ const urlEP = import.meta.env.PROD
   ? "/api/v1/users"
   : "http://localhost:8000/api/v1/users";
 
-const processAPI = async (method, url, userData) => {
+const processAPI = async ({ method, url, data }) => {
   try {
     const response = await axios({
       method,
-      url: url,
-      data: userData,
+      url,
+      data,
     });
     return response.data;
   } catch (error) {
@@ -19,7 +19,11 @@ const processAPI = async (method, url, userData) => {
   }
 };
 
-export const insertUser = async (userData) => {
-  const url = urlEP + "/signup";
-  return processAPI("post", url, userData);
+export const insertUser = async (data) => {
+  const obj = {
+    method: "post",
+    url: urlEP + "/signup",
+    data,
+  };
+  return processAPI(obj);
 };
