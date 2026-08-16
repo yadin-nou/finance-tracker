@@ -49,7 +49,7 @@ export const TipContent = () => {
       setIndex(Math.floor(Math.random() * financialTips.length));
     }, 4000);
   }, []);
-  console.log(index);
+  //console.log(index);
   const { tip, person } = financialTips[index];
   return (
     <div className="text-justify">

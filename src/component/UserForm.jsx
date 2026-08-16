@@ -1,18 +1,46 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import FormTemplate from "./FormTemplate";
 
 export const UserForm = () => {
+  const fromTPL = [
+    {
+      type: "text",
+      label: "Name",
+      required: true,
+      placeholder: "Your Name",
+      name: "name",
+    },
+
+    {
+      type: "email",
+      label: "Email",
+      required: true,
+      placeholder: "eg: yourname@email.com",
+      name: "email",
+    },
+    {
+      type: "password",
+      label: "Password",
+      required: true,
+      placeholder: "******",
+      name: "password",
+    },
+    {
+      type: "password",
+      label: "Confirm Password",
+      required: true,
+      placeholder: "******",
+      name: "cmpassword",
+    },
+  ];
+
   return (
     <div>
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
+        {fromTPL.map((frm) => (
+          <FormTemplate key={frm.name} {...frm} />
+        ))}
         <div className="d-grid">
           <Button variant="primary" type="submit">
             Submit
