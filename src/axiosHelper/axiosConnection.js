@@ -27,3 +27,12 @@ export const insertUser = async (data) => {
   };
   return processAPI(obj);
 };
+
+export const userLogin = (data) => {
+  const obj = {
+    method: "get",
+    url: urlEP + "/login",
+    data,
+  };
+  return processAPI(obj);
+};

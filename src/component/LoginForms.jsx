@@ -5,7 +5,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useFormHook from "../hooks/useFormHook";
 
-export const LoginForms = ({}) => {
+export const LoginForms = (loginPro) => {
   // const [userData, setUserData] = useState({});
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const fromTPL = [
@@ -28,10 +28,9 @@ export const LoginForms = ({}) => {
   //   const { name, value } = e.target;
   //   setUserData({ ...userData, [name]: value });
   // };
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData);
-    //signUpUser(userData);
+    const result = await loginPro(userData);
   };
 
   return (
