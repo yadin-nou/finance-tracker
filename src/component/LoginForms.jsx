@@ -3,9 +3,11 @@ import Form from "react-bootstrap/Form";
 import FormTemplate from "./FormTemplate";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import useFormHook from "../hooks/useFormHook";
 
 export const LoginForms = ({}) => {
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
+  const { userData, setUserData, handleOnChange } = useFormHook({});
   const fromTPL = [
     {
       type: "email",
@@ -22,10 +24,10 @@ export const LoginForms = ({}) => {
       name: "password",
     },
   ];
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
+  // const handleOnChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setUserData({ ...userData, [name]: value });
+  // };
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(userData);
