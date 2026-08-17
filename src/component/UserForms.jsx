@@ -4,8 +4,11 @@ import FormTemplate from "./FormTemplate";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
+import useFormHook from "../hooks/useFormHook";
+
 export const UserForms = ({ signUpUser }) => {
-  const [userData, setUserData] = useState({});
+  //const [userData, setUserData] = useState({});
+  const { userData, setUserData, handleOnChange } = useFormHook({});
   const [spiner, setSpiner] = useState(false);
   const emptyData = {
     name: "",
@@ -13,6 +16,7 @@ export const UserForms = ({ signUpUser }) => {
     password: "",
     cmpassword: "",
   };
+
   const fromTPL = [
     {
       type: "text",
@@ -48,10 +52,11 @@ export const UserForms = ({ signUpUser }) => {
       value: userData.cmpassword,
     },
   ];
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
+
+  // const handleOnChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setUserData({ ...userData, [name]: value });
+  // };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     if (userData.password !== userData.cmpassword) {
