@@ -5,7 +5,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useFormHook from "../hooks/useFormHook";
 
-export const LoginForms = (loginPro) => {
+export const LoginFormLayout = ({ loginPro }) => {
   // const [userData, setUserData] = useState({});
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const fromTPL = [

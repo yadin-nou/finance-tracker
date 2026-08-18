@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginForms } from "../component/LoginForms";
+import { LoginFormLayout } from "../component/LoginFormLayout";
 import { TipContent } from "../component/TipContent";
 import { Container, Row, Col } from "react-bootstrap";
 import { userLogin } from "../axiosHelper/axiosConnection";
@@ -20,7 +20,7 @@ export const LoginPage = () => {
         <Row>
           <Col md="6" className="border border-light p-3">
             <h3>Login...!</h3>
-            <LoginForms loginPro={loginPro} />
+            <LoginFormLayout loginPro={loginPro} />
           </Col>
           <Col md="6" className="pt-5">
             <TipContent />

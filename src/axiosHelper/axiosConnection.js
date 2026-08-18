@@ -20,6 +20,7 @@ const processAPI = async ({ method, url, data }) => {
 };
 
 export const insertUser = async (data) => {
+  console.log(data, " axios");
   const obj = {
     method: "post",
     url: urlEP + "/signup",
@@ -28,9 +29,9 @@ export const insertUser = async (data) => {
   return processAPI(obj);
 };
 
-export const userLogin = (data) => {
+export const userLogin = async (data) => {
   const obj = {
-    method: "get",
+    method: "post",
     url: urlEP + "/login",
     data,
   };
