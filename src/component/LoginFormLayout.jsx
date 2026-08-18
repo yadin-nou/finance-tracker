@@ -30,7 +30,19 @@ export const LoginFormLayout = ({ loginPro }) => {
   // };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const result = await loginPro(userData);
+    const pendingResp = loginPro(userData);
+    //promise is the behavior of pending
+    toast.promise(pendingResp, { pending: "Please wait...." });
+    //waiting the data to success
+    const { status, message, user, jwtAccess } = await pendingResp;
+    //   const notify = (status, message) => {
+    // if (status === "success") toast.success(message);
+    // else if (status === "error") toast.error(message);
+    // else if (status === "warn") toast.warn(message);
+    // else if (status === "info") toast.info(message);
+    //};
+    //shotcut for toast
+    toast[status](message);
   };
 
   return (

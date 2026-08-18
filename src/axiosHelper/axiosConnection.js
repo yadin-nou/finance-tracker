@@ -14,7 +14,9 @@ const processAPI = async ({ method, url, data }) => {
   } catch (error) {
     return {
       status: "error",
-      message: error.message,
+      //check in the error respone, if error has response,
+      //response has data ,data has error, otherwise error.message
+      message: error?.response?.data?.error || error.message,
     };
   }
 };
