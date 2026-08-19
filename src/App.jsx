@@ -8,6 +8,7 @@ import { DefaultLayouts } from "./component/Layout/DefaultLayouts";
 import { LoginPage } from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 import Transaction from "./pages/Transaction";
+import { Auth } from "./auth/Auth";
 
 function App() {
   return (
@@ -15,11 +16,25 @@ function App() {
       <Container className="bg-dark text-white w-100">
         <Routes>
           <Route path="/" element={<DefaultLayouts />}>
-            <Route index element={""} />
+            <Route index element={<LoginPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="transaction" element={<Transaction />} />
+            <Route
+              path="dashboard"
+              element={
+                <Auth>
+                  <Dashboard />
+                </Auth>
+              }
+            />
+            <Route
+              path="transaction"
+              element={
+                <Auth>
+                  <Transaction />
+                </Auth>
+              }
+            />
           </Route>
         </Routes>
       </Container>
