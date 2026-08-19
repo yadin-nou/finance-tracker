@@ -4,6 +4,9 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { CiLogin } from "react-icons/ci";
 import { IoPersonAddOutline } from "react-icons/io5";
+import { MdOutlineDashboard } from "react-icons/md";
+import { AiOutlineTransaction } from "react-icons/ai";
+import { CiLogout } from "react-icons/ci";
 export const HeaderLayouts = () => {
   return (
     <Navbar expand="lg" className="bg-body-dark" variant="dark">
@@ -17,6 +20,15 @@ export const HeaderLayouts = () => {
             </Link>
             <Link to="/login" className="nav-link">
               <CiLogin /> Login
+            </Link>
+            <Link to="/dashboard" className="nav-link">
+              <MdOutlineDashboard /> Dashboard
+            </Link>
+            <Link to="/transaction" className="nav-link">
+              <AiOutlineTransaction /> Transaction
+            </Link>
+            <Link to="/logout" className="nav-link">
+              <CiLogout /> Logout
             </Link>
           </Nav>
         </Navbar.Collapse>

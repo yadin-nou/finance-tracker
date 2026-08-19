@@ -6,6 +6,8 @@ import SignUp from "./pages/SignUp";
 import { Route, Routes } from "react-router-dom";
 import { DefaultLayouts } from "./component/Layout/DefaultLayouts";
 import { LoginPage } from "./pages/LoginPage";
+import Dashboard from "./pages/Dashboard";
+import Transaction from "./pages/Transaction";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route index element={""} />
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="transaction" element={<Transaction />} />
           </Route>
         </Routes>
       </Container>
