@@ -9,7 +9,6 @@ import { LoginPage } from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 import Transaction from "./pages/Transaction";
 import { Auth } from "./auth/Auth";
-
 function App() {
   return (
     <div className="bg-dark" style={{ height: "100vh" }}>

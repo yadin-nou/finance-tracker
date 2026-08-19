@@ -7,7 +7,11 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import { MdOutlineDashboard } from "react-icons/md";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { CiLogout } from "react-icons/ci";
+import { userContext } from "../../main";
+import { useContext } from "react";
 export const HeaderLayouts = () => {
+  // const useUser = useContext(userContext);
+  // console.log(useUser);
   return (
     <Navbar expand="lg" className="bg-body-dark" variant="dark">
       <Container>
