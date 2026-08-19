@@ -1,13 +1,16 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormTemplate from "./FormTemplate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useFormHook from "../hooks/useFormHook";
+import { useUser } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 export const LoginFormLayout = ({ loginPro }) => {
-  // const [userData, setUserData] = useState({});
+  const navi = useNavigate();
   const { userData, setUserData, handleOnChange } = useFormHook({});
+  const { user, setUser } = useUser();
   const fromTPL = [
     {
       type: "email",
@@ -24,10 +27,11 @@ export const LoginFormLayout = ({ loginPro }) => {
       name: "password",
     },
   ];
-  // const handleOnChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setUserData({ ...userData, [name]: value });
-  // };
+  useEffect(() => {
+    user?._id && navi("/dashboard");
+    //when variable change, use effect re-run
+  }, [user?._id, navi]);
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const pendingResp = loginPro(userData);
@@ -43,6 +47,7 @@ export const LoginFormLayout = ({ loginPro }) => {
     //};
     //shotcut for toast
     toast[status](message);
+    setUser(user);
   };
 
   return (
