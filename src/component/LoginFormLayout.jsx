@@ -48,6 +48,7 @@ export const LoginFormLayout = ({ loginPro }) => {
     //shotcut for toast
     toast[status](message);
     setUser(user);
+    localStorage.setItem("jwtAccess", jwtAccess);
   };
 
   return (

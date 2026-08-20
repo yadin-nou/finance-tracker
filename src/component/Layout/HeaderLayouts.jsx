@@ -12,6 +12,13 @@ export const HeaderLayouts = () => {
   // const useUser = useContext(userContext);
   // console.log(useUser);
   //console.log(useUser());
+  const { setUser } = useUser();
+  const handleLogout = () => {
+    //clear token from browser
+    localStorage.removeItem("jwtAccess");
+    //reset user data
+    setUser({});
+  };
   return (
     <Navbar expand="lg" className="bg-body-dark" variant="dark">
       <Container>
@@ -31,7 +38,7 @@ export const HeaderLayouts = () => {
             <Link to="/transaction" className="nav-link">
               <AiOutlineTransaction /> Transaction
             </Link>
-            <Link to="/logout" className="nav-link">
+            <Link to="/" className="nav-link" onClick={handleLogout}>
               <CiLogout /> Logout
             </Link>
           </Nav>
