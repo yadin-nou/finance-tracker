@@ -27,7 +27,7 @@ export const HeaderLayouts = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {!user?._id && (
+            {!user?._id ? (
               <>
                 <Link to="/signup" className="nav-link">
                   <IoPersonAddOutline /> Signup
@@ -36,8 +36,7 @@ export const HeaderLayouts = () => {
                   <CiLogin /> Login
                 </Link>
               </>
-            )}
-            {user?._id && (
+            ) : (
               <>
                 <Link to="/dashboard" className="nav-link">
                   <MdOutlineDashboard /> Dashboard
