@@ -12,7 +12,8 @@ export const HeaderLayouts = () => {
   // const useUser = useContext(userContext);
   // console.log(useUser);
   //console.log(useUser());
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
+
   const handleLogout = () => {
     //clear token from browser
     localStorage.removeItem("jwtAccess");
@@ -26,21 +27,29 @@ export const HeaderLayouts = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link to="/signup" className="nav-link">
-              <IoPersonAddOutline /> Signup
-            </Link>
-            <Link to="/login" className="nav-link">
-              <CiLogin /> Login
-            </Link>
-            <Link to="/dashboard" className="nav-link">
-              <MdOutlineDashboard /> Dashboard
-            </Link>
-            <Link to="/transaction" className="nav-link">
-              <AiOutlineTransaction /> Transaction
-            </Link>
-            <Link to="/" className="nav-link" onClick={handleLogout}>
-              <CiLogout /> Logout
-            </Link>
+            {!user?._id && (
+              <>
+                <Link to="/signup" className="nav-link">
+                  <IoPersonAddOutline /> Signup
+                </Link>
+                <Link to="/login" className="nav-link">
+                  <CiLogin /> Login
+                </Link>
+              </>
+            )}
+            {user?._id && (
+              <>
+                <Link to="/dashboard" className="nav-link">
+                  <MdOutlineDashboard /> Dashboard
+                </Link>
+                <Link to="/transaction" className="nav-link">
+                  <AiOutlineTransaction /> Transaction
+                </Link>
+                <Link to="/" className="nav-link" onClick={handleLogout}>
+                  <CiLogout /> Logout
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
