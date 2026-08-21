@@ -8,6 +8,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { CiLogout } from "react-icons/ci";
 import { useUser } from "../../context/userContext";
+import { removeLocalStorage } from "../../localstorage/localStorage";
 export const HeaderLayouts = () => {
   // const useUser = useContext(userContext);
   // console.log(useUser);
@@ -16,7 +17,8 @@ export const HeaderLayouts = () => {
 
   const handleLogout = () => {
     //clear token from browser
-    localStorage.removeItem("jwtAccess");
+    // localStorage.removeItem("jwtAccess");
+    removeLocalStorage("jwtAccess");
     //reset user data
     setUser({});
   };

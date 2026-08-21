@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import useFormHook from "../hooks/useFormHook";
 import { useUser } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import { setLocalStorage } from "../localstorage/localStorage";
 
 export const LoginFormLayout = ({ loginPro }) => {
   const navi = useNavigate();
@@ -48,7 +49,7 @@ export const LoginFormLayout = ({ loginPro }) => {
     //shotcut for toast
     toast[status](message);
     setUser(user);
-    localStorage.setItem("jwtAccess", jwtAccess);
+    setLocalStorage("jwtAccess", jwtAccess);
   };
 
   return (

@@ -1,14 +1,16 @@
 import axios from "axios";
+import { getLocalStorage } from "../localstorage/localStorage";
 const urlEP = import.meta.env.PROD
   ? "/api/v1/users"
   : "http://localhost:8000/api/v1/users";
 
-const processAPI = async ({ method, url, data }) => {
+const processAPI = async ({ method, url, data, headers }) => {
   try {
     const response = await axios({
       method,
       url,
       data,
+      headers,
     });
     return response.data;
   } catch (error) {
@@ -36,6 +38,18 @@ export const userLogin = async (data) => {
     method: "post",
     url: urlEP + "/login",
     data,
+  };
+  return processAPI(obj);
+};
+
+//get User profile
+export const getUser = async () => {
+  const obj = {
+    method: "get",
+    url: urlEP,
+    headers: {
+      Authorization: getLocalStorage("jwtAccess"),
+    },
   };
   return processAPI(obj);
 };
