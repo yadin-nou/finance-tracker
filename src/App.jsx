@@ -15,6 +15,7 @@ function App() {
   const { user, setUser } = useUser();
   useEffect(() => {
     //when user not avairrable by refreshing page or new tap or first load
+    //new loging start execute by function loadingUser
     !user?._id && loadingUser();
   }, []);
 

@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useFormHook from "../hooks/useFormHook";
 import { useUser } from "../context/userContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setLocalStorage } from "../localstorage/localStorage";
 
 export const LoginFormLayout = ({ loginPro }) => {
   const navi = useNavigate();
+  //const location = useLocation();
+  console.log(location);
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const { user, setUser } = useUser();
   const fromTPL = [
