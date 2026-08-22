@@ -36,15 +36,6 @@ export const insertUser = async (data) => {
   };
   return processAPI(obj);
 };
-export const addTransactionAxois = async (data) => {
-  // console.log(data, " transaction");
-  const obj = {
-    method: "post",
-    url: urlEP + "/transaction",
-    data,
-  };
-  return processAPI(obj);
-};
 
 export const userLogin = async (data) => {
   const obj = {
@@ -60,6 +51,21 @@ export const getUser = async () => {
   const obj = {
     method: "get",
     url: urlEPTransaction,
+    headers: {
+      Authorization: getLocalStorage("jwtAccess"),
+    },
+  };
+  return processAPI(obj);
+};
+
+//Add transaction
+
+export const addTransactionAxois = async (data) => {
+  // console.log(data, " transaction");
+  const obj = {
+    method: "post",
+    url: urlEPTransaction,
+    data,
     headers: {
       Authorization: getLocalStorage("jwtAccess"),
     },

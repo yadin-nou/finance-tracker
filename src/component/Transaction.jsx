@@ -49,12 +49,12 @@ export const Transaction = ({ addTransactions }) => {
     e.preventDefault();
     // console.log(userData, "Transaction...");
     setSpinner(true);
-    user?._id && setUserData({ ...userData, userID: user._id });
-    console.log(userData);
-    const pendingResp = user?._id && addTransactions(userData);
+    // user?._id && setUserData({ ...userData, userID: user._id });
+    //console.log(userData);
+    const result = await addTransactions(userData);
     //promise is the behavior of pending
-    toast.promise(pendingResp, { pending: "Please wait...." });
-    const result = await pendingResp;
+    // toast.promise(pendingResp, { pending: "Please wait...." });
+    // const result = await pendingResp;
     if (result.status === "error") {
       setSpinner(false);
       toast.error(result.message);
