@@ -5,11 +5,12 @@ import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import useFormHook from "../hooks/useFormHook";
 import useSpinner from "../hooks/useSpinner";
+import { useUser } from "../context/userContext";
 
-export const Transaction = ({}) => {
+export const Transaction = ({ addTransactions }) => {
   const { userData, setUserData, handleOnChange } = useFormHook({});
-  //const [spiner, setSpiner] = useState(false);
   const { spinner, setSpinner } = useSpinner(false);
+  const { user, setUser } = useUser();
   const emptyData = {
     type: "",
     title: "",
@@ -46,17 +47,22 @@ export const Transaction = ({}) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData, "Transaction...");
-    // setSpiner(true);
-    // const result = await signUpUser(userData);
-    // if (result.status === "error") {
-    //   setSpiner(false);
-    //   toast.error(result.message);
-    // } else {
-    //   setSpiner(false);
-    //   setUserData(emptyData);
-    //   toast.success(result.message);
-    // }
+    // console.log(userData, "Transaction...");
+    setSpinner(true);
+    user?._id && setUserData({ ...userData, userID: user._id });
+    console.log(userData);
+    const pendingResp = user?._id && addTransactions(userData);
+    //promise is the behavior of pending
+    toast.promise(pendingResp, { pending: "Please wait...." });
+    const result = await pendingResp;
+    if (result.status === "error") {
+      setSpinner(false);
+      toast.error(result.message);
+    } else {
+      setSpinner(false);
+      setUserData(emptyData);
+      toast.success(result.message);
+    }
   };
 
   return (

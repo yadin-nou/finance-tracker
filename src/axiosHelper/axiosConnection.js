@@ -24,10 +24,19 @@ const processAPI = async ({ method, url, data, headers }) => {
 };
 
 export const insertUser = async (data) => {
-  console.log(data, " axios");
+  //  console.log(data, " axios");
   const obj = {
     method: "post",
     url: urlEP + "/signup",
+    data,
+  };
+  return processAPI(obj);
+};
+export const addTransactionAxois = async (data) => {
+  // console.log(data, " transaction");
+  const obj = {
+    method: "post",
+    url: urlEP + "/transaction",
     data,
   };
   return processAPI(obj);

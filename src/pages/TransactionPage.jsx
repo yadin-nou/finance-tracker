@@ -2,8 +2,17 @@ import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { Transaction } from "../component/Transaction";
+import { addTransactionAxois } from "../axiosHelper/axiosConnection";
 
 function TransactionPage() {
+  const addTransactions = async (userData) => {
+    try {
+      const response = await addTransactionAxois(userData);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="d-flex">
       <Container
@@ -14,7 +23,7 @@ function TransactionPage() {
         {" "}
         <Row>
           <Col>
-            <Transaction />
+            <Transaction addTransactions={addTransactions} />
           </Col>
         </Row>
       </Container>
