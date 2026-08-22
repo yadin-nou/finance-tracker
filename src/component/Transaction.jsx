@@ -64,7 +64,7 @@ export const Transaction = ({}) => {
         <Form.Group className="mb-3">
           <Form.Label>Type</Form.Label>
           <Form.Select name="type" value={userData.type}>
-            <option>Selected</option>
+            <option>--Select Type--</option>
             <option value="income">income</option>
             <option value="expenses">expenses</option>
           </Form.Select>

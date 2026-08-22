@@ -15,7 +15,7 @@ export const HeaderLayouts = () => {
   // console.log(useUser);
   //console.log(useUser());
   const { user, setUser } = useUser();
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const handleLogout = () => {
     //clear token from browser
     // localStorage.removeItem("jwtAccess");
