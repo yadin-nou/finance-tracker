@@ -4,6 +4,10 @@ const urlEP = import.meta.env.PROD
   ? "/api/v1/users"
   : "http://localhost:8000/api/v1/users";
 
+const urlEPTransaction = import.meta.env.PROD
+  ? "/api/v1/transaction"
+  : "http://localhost:8000/api/v1/transaction";
+
 const processAPI = async ({ method, url, data, headers }) => {
   try {
     const response = await axios({
@@ -55,7 +59,7 @@ export const userLogin = async (data) => {
 export const getUser = async () => {
   const obj = {
     method: "get",
-    url: urlEP,
+    url: urlEPTransaction,
     headers: {
       Authorization: getLocalStorage("jwtAccess"),
     },
