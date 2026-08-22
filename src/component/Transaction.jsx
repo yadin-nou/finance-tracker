@@ -1,14 +1,15 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormTemplate from "./FormTemplate";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import useFormHook from "../hooks/useFormHook";
+import useSpinner from "../hooks/useSpinner";
 
 export const Transaction = ({}) => {
   const { userData, setUserData, handleOnChange } = useFormHook({});
-  const [spiner, setSpiner] = useState(false);
+  //const [spiner, setSpiner] = useState(false);
+  const { spinner, setSpinner } = useSpinner(false);
   const emptyData = {
     type: "",
     title: "",
@@ -29,7 +30,7 @@ export const Transaction = ({}) => {
       type: "number",
       label: "Amount",
       required: true,
-      placeholder: "$12,432",
+      placeholder: "$1243",
       name: "amount",
       value: userData.amount,
     },
@@ -63,8 +64,13 @@ export const Transaction = ({}) => {
       <Form onSubmit={handleOnSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Type</Form.Label>
-          <Form.Select name="type" value={userData.type}>
-            <option>--Select Type--</option>
+          <Form.Select
+            name="type"
+            value={userData.type}
+            required
+            onChange={handleOnChange}
+          >
+            <option value="">--Select Type--</option>
             <option value="income">income</option>
             <option value="expenses">expenses</option>
           </Form.Select>
@@ -74,14 +80,14 @@ export const Transaction = ({}) => {
         ))}
         <div className="d-grid">
           {/* Explicitly set type="submit" */}
-          {spiner && (
+          {spinner && (
             <Spinner
               animation="border"
               variant="primary"
               style={{ margin: "0 auto" }}
             />
           )}
-          {!spiner && (
+          {!spinner && (
             <Button type="submit" variant="primary">
               Add
             </Button>

@@ -8,6 +8,7 @@ import { useUser } from "../context/userContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setLocalStorage } from "../localstorage/localStorage";
 import Spinner from "react-bootstrap/Spinner";
+import useSpinner from "../hooks/useSpinner";
 
 export const LoginFormLayout = ({ loginPro }) => {
   const navi = useNavigate();
@@ -15,7 +16,8 @@ export const LoginFormLayout = ({ loginPro }) => {
   //console.log(location);
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const { user, setUser } = useUser();
-  const [spiner, setSpiner] = useState(false);
+  //const [spinner, setSpinner] = useState(false);
+  const { spinner, setSpinner } = useSpinner(false);
   const fromTPL = [
     {
       type: "email",
@@ -39,7 +41,7 @@ export const LoginFormLayout = ({ loginPro }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    setSpiner(true);
+    setSpinner(true);
     const pendingResp = loginPro(userData);
     //promise is the behavior of pending
     toast.promise(pendingResp, { pending: "Please wait...." });
@@ -52,7 +54,7 @@ export const LoginFormLayout = ({ loginPro }) => {
     // else if (status === "info") toast.info(message);
     //};
     if (status === "error") {
-      setSpiner(false);
+      setSpinner(false);
       toast[status](message);
       return;
     }
@@ -60,7 +62,7 @@ export const LoginFormLayout = ({ loginPro }) => {
     //shotcut for toast
     toast[status](message);
     setUser(user);
-    setSpiner(false);
+    setSpinner(false);
     setLocalStorage("jwtAccess", jwtAccess);
   };
 
@@ -72,7 +74,7 @@ export const LoginFormLayout = ({ loginPro }) => {
         ))}
         <div className="d-grid">
           {/* Explicitly set type="submit" */}
-          {spiner ? (
+          {spinner ? (
             <Spinner
               animation="border"
               variant="primary"

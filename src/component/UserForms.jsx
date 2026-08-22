@@ -5,11 +5,13 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import useFormHook from "../hooks/useFormHook";
+import useSpinner from "../hooks/useSpinner";
 
 export const UserForms = ({ signUpUser }) => {
   //const [userData, setUserData] = useState({});
   const { userData, setUserData, handleOnChange } = useFormHook({});
-  const [spiner, setSpiner] = useState(false);
+  // const [spinner, setSpinner] = useState(false);
+  const { spinner, setSpinner } = useSpinner(false);
   const emptyData = {
     name: "",
     email: "",
@@ -59,16 +61,18 @@ export const UserForms = ({ signUpUser }) => {
   // };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+
     if (userData.password !== userData.cmpassword) {
       return toast.error("Password is not match");
     }
-    setSpiner(true);
+    setSpinner(true);
+
     const result = await signUpUser(userData);
     if (result.status === "error") {
-      setSpiner(false);
+      setSpinner(false);
       toast.error(result.message);
     } else {
-      setSpiner(false);
+      setSpinner(false);
       setUserData(emptyData);
       toast.success(result.message);
     }
@@ -82,14 +86,14 @@ export const UserForms = ({ signUpUser }) => {
         ))}
         <div className="d-grid">
           {/* Explicitly set type="submit" */}
-          {spiner && (
+          {spinner && (
             <Spinner
               animation="border"
               variant="primary"
               style={{ margin: "0 auto" }}
             />
           )}
-          {!spiner && (
+          {!spinner && (
             <Button type="submit" variant="primary">
               Submit
             </Button>
