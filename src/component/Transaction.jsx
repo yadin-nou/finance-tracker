@@ -6,76 +6,69 @@ import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import useFormHook from "../hooks/useFormHook";
 
-export const TransactionForm = ({}) => {
+export const Transaction = ({}) => {
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const [spiner, setSpiner] = useState(false);
   const emptyData = {
-    name: "",
-    email: "",
-    password: "",
-    cmpassword: "",
+    type: "",
+    title: "",
+    amount: "",
+    date: "",
   };
 
   const fromTPL = [
     {
       type: "text",
-      label: "Name",
+      label: "Title",
       required: true,
-      placeholder: "Your Name",
-      name: "name",
-      value: userData.name,
-    },
-
-    {
-      type: "email",
-      label: "Email",
-      required: true,
-      placeholder: "eg: yourname@email.com",
-      name: "email",
-      value: userData.email,
+      placeholder: "Short Description",
+      name: "title",
+      value: userData.title,
     },
     {
-      type: "password",
-      label: "Password",
+      type: "number",
+      label: "Amount",
       required: true,
-      placeholder: "******",
-      name: "password",
-      value: userData.password,
+      placeholder: "$12,432",
+      name: "amount",
+      value: userData.amount,
     },
     {
-      type: "password",
-      label: "Confirm Password",
+      type: "date",
+      label: "Date",
       required: true,
-      placeholder: "******",
-      name: "cmpassword",
-      value: userData.cmpassword,
+      placeholder: "what date?",
+      name: "date",
+      value: userData.date,
     },
   ];
 
-  // const handleOnChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setUserData({ ...userData, [name]: value });
-  // };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    if (userData.password !== userData.cmpassword) {
-      return toast.error("Password is not match");
-    }
-    setSpiner(true);
-    const result = await signUpUser(userData);
-    if (result.status === "error") {
-      setSpiner(false);
-      toast.error(result.message);
-    } else {
-      setSpiner(false);
-      setUserData(emptyData);
-      toast.success(result.message);
-    }
+    console.log(userData, "Transaction...");
+    // setSpiner(true);
+    // const result = await signUpUser(userData);
+    // if (result.status === "error") {
+    //   setSpiner(false);
+    //   toast.error(result.message);
+    // } else {
+    //   setSpiner(false);
+    //   setUserData(emptyData);
+    //   toast.success(result.message);
+    // }
   };
 
   return (
     <div>
       <Form onSubmit={handleOnSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Type</Form.Label>
+          <Form.Select name="type" value={userData.type}>
+            <option>Selected</option>
+            <option value="income">income</option>
+            <option value="expenses">expenses</option>
+          </Form.Select>
+        </Form.Group>
         {fromTPL.map((frm) => (
           <FormTemplate key={frm.name} {...frm} onChange={handleOnChange} />
         ))}
@@ -90,7 +83,7 @@ export const TransactionForm = ({}) => {
           )}
           {!spiner && (
             <Button type="submit" variant="primary">
-              Submit
+              Add
             </Button>
           )}
         </div>

@@ -7,10 +7,10 @@ import { Route, Routes } from "react-router-dom";
 import { DefaultLayouts } from "./component/Layout/DefaultLayouts";
 import { LoginPage } from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
-import Transaction from "./pages/Transaction";
 import { Auth } from "./auth/Auth";
 import { useUser } from "./context/userContext";
 import { autoLogin } from "./utils/users";
+import TransactionPage from "./pages/TransactionPage";
 function App() {
   const { user, setUser } = useUser();
   useEffect(() => {
@@ -45,7 +45,7 @@ function App() {
               path="transaction"
               element={
                 <Auth>
-                  <Transaction />
+                  <TransactionPage />
                 </Auth>
               }
             />

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { Transaction } from "../component/Transaction";
 
-function Transaction() {
+function TransactionPage() {
   return (
     <div className="d-flex">
       <Container
@@ -12,11 +13,13 @@ function Transaction() {
       >
         {" "}
         <Row>
-          <Col md="6">Transaction</Col>
+          <Col>
+            <Transaction />
+          </Col>
         </Row>
       </Container>
     </div>
   );
 }
 
-export default Transaction;
+export default TransactionPage;
