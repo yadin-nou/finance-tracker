@@ -10,6 +10,9 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
   const { transData, getTranctions } = useUser([]);
   const { userData, setUserData } = useFormHook([]);
 
+  const totalBalance = transData.reduce((acc, trans) => {
+    return trans.type === "income" ? acc + trans.amount : acc - trans.amount;
+  }, 0);
   const handleCheckbox = (e) => {
     const { name, checked } = e.target;
     if (checked) {
@@ -110,7 +113,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
           ))}
           <tr>
             <td colSpan={3}>Total Balance:</td>
-            <td colSpan={2}>Total Balance:</td>
+            <td colSpan={2}>$ {totalBalance}</td>
             <td>{""}</td>
           </tr>
         </tbody>
