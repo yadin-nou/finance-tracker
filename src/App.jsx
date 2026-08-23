@@ -3,7 +3,7 @@ import { Button, Container } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "./App.css";
 import SignUp from "./pages/SignUp";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { DefaultLayouts } from "./component/Layout/DefaultLayouts";
 import { LoginPage } from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
@@ -12,6 +12,7 @@ import { useUser } from "./context/userContext";
 import { autoLogin } from "./utils/users";
 import TransactionPage from "./pages/TransactionPage";
 function App() {
+  const navi = useNavigate();
   const { user, setUser } = useUser();
   useEffect(() => {
     //when user not avairrable by refreshing page or new tap or first load
@@ -22,6 +23,8 @@ function App() {
   const loadingUser = async () => {
     //update user to avairrable in every page
     const user = await autoLogin();
+    !user?._id && navi("/login");
+    //console.log(user);
     setUser(user);
   };
 

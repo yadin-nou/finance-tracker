@@ -50,7 +50,7 @@ export const userLogin = async (data) => {
 export const getUser = async () => {
   const obj = {
     method: "get",
-    url: urlEPTransaction,
+    url: urlEP,
     headers: {
       Authorization: getLocalStorage("jwtAccess"),
     },

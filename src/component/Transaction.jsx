@@ -6,8 +6,12 @@ import Spinner from "react-bootstrap/Spinner";
 import useFormHook from "../hooks/useFormHook";
 import useSpinner from "../hooks/useSpinner";
 import { useUser } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
+import { removeLocalStorage } from "../localstorage/localStorage";
+import { TransactionTable } from "./Layout/TransactionTable";
 
 export const Transaction = ({ addTransactions }) => {
+  const navi = useNavigate();
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const { spinner, setSpinner } = useSpinner(false);
   const { user, setUser } = useUser();
@@ -47,17 +51,19 @@ export const Transaction = ({ addTransactions }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    // console.log(userData, "Transaction...");
     setSpinner(true);
     // user?._id && setUserData({ ...userData, userID: user._id });
     //console.log(userData);
-    const result = await addTransactions(userData);
+    const pendingResp = addTransactions(userData);
     //promise is the behavior of pending
-    // toast.promise(pendingResp, { pending: "Please wait...." });
-    // const result = await pendingResp;
+    toast.promise(pendingResp, { pending: "Please wait...." });
+    const result = await pendingResp;
     if (result.status === "error") {
       setSpinner(false);
-      toast.error(result.message);
+      toast.error("Session has expired!!, Please re-login");
+      removeLocalStorage("jwtAccess");
+      setUser({});
+      navi("/login");
     } else {
       setSpinner(false);
       setUserData(emptyData);
@@ -67,7 +73,8 @@ export const Transaction = ({ addTransactions }) => {
 
   return (
     <div>
-      <Form onSubmit={handleOnSubmit}>
+      <TransactionTable />
+      <Form onSubmit={handleOnSubmit} style={{ display: "none" }}>
         <Form.Group className="mb-3">
           <Form.Label>Type</Form.Label>
           <Form.Select
