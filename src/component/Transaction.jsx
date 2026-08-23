@@ -9,12 +9,14 @@ import { useUser } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { removeLocalStorage } from "../localstorage/localStorage";
 import { TransactionTable } from "./TransactionTable";
+import { useState } from "react";
 
 export const Transaction = ({ addTransactions, getTranctions }) => {
   const navi = useNavigate();
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const { spinner, setSpinner } = useSpinner(false);
   const { user, setUser } = useUser();
+  const [addTrans, setAddTrans] = useState(false);
   const emptyData = {
     type: "",
     title: "",
@@ -76,41 +78,67 @@ export const Transaction = ({ addTransactions, getTranctions }) => {
   // };
 
   return (
-    <div>
-      <TransactionTable getTranctions={getTranctions} />
-      <Form onSubmit={handleOnSubmit} style={{ display: "none" }}>
-        <Form.Group className="mb-3">
-          <Form.Label>Type</Form.Label>
-          <Form.Select
-            name="type"
-            value={userData.type}
-            required
-            onChange={handleOnChange}
-          >
-            <option value="">--Select Type--</option>
-            <option value="income">income</option>
-            <option value="expenses">expenses</option>
-          </Form.Select>
-        </Form.Group>
-        {fromTPL.map((frm) => (
-          <FormTemplate key={frm.name} {...frm} onChange={handleOnChange} />
-        ))}
-        <div className="d-grid">
-          {/* Explicitly set type="submit" */}
-          {spinner && (
-            <Spinner
-              animation="border"
-              variant="primary"
-              style={{ margin: "0 auto" }}
-            />
-          )}
-          {!spinner && (
-            <Button type="submit" variant="primary">
-              Add
-            </Button>
-          )}
+    <div className="position-relative">
+      <TransactionTable
+        getTranctions={getTranctions}
+        setAddTrans={setAddTrans}
+        className="z-1"
+        style={{ pointerEvents: "none" }}
+      />
+      {addTrans && (
+        <div
+          className="container-md rounded z-2 position-absolute p-4 text-dark"
+          style={{ top: "-15%", background: "white" }}
+        >
+          <Form onSubmit={handleOnSubmit}>
+            <div className="d-flex justify-content-between">
+              <div>
+                <h4>Add Transaction...</h4>
+              </div>
+              <div>
+                <Button
+                  type="button"
+                  variant="danger"
+                  onClick={() => setAddTrans(false)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+            <Form.Group className="mb-3">
+              <Form.Label>Type</Form.Label>
+              <Form.Select
+                name="type"
+                value={userData.type}
+                required
+                onChange={handleOnChange}
+              >
+                <option value="">--Select Type--</option>
+                <option value="income">income</option>
+                <option value="expenses">expenses</option>
+              </Form.Select>
+            </Form.Group>
+            {fromTPL.map((frm) => (
+              <FormTemplate key={frm.name} {...frm} onChange={handleOnChange} />
+            ))}
+            <div className="d-grid">
+              {/* Explicitly set type="submit" */}
+              {spinner && (
+                <Spinner
+                  animation="border"
+                  variant="primary"
+                  style={{ margin: "0 auto" }}
+                />
+              )}
+              {!spinner && (
+                <Button type="submit" variant="primary">
+                  Add
+                </Button>
+              )}
+            </div>
+          </Form>
         </div>
-      </Form>
+      )}
     </div>
   );
 };

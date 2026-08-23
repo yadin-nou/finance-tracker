@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 
-export const TransactionTable = ({ getTranctions }) => {
+export const TransactionTable = ({ getTranctions, setAddTrans }) => {
   const [trans, setTrans] = useState([]);
 
   const handleDisplay = async () => {
@@ -16,7 +16,7 @@ export const TransactionTable = ({ getTranctions }) => {
   }, []);
   return (
     <div>
-      <div className="d-flex justify-content-between pb-2">
+      <div className="d-flex justify-content-between flex-wrap pb-2">
         <div>
           <Form>
             <div className="mb-3">
@@ -34,7 +34,11 @@ export const TransactionTable = ({ getTranctions }) => {
           <Form.Control type="text" size="sm" placeholder="Search....." />
         </div>
         <div>
-          <Button type="submit" variant="primary">
+          <Button
+            type="submit"
+            variant="primary"
+            onClick={() => setAddTrans(true)}
+          >
             <MdOutlineBookmarkAdd className="fs-4" /> Add Transaction
           </Button>
         </div>
@@ -60,7 +64,15 @@ export const TransactionTable = ({ getTranctions }) => {
           {trans.map((item, key) => (
             <tr key={item._id}>
               <td>{key + 1}</td>
-              <td>{item.title}</td>
+              <td className="d-flex justify-content-left">
+                <Form.Check
+                  inline
+                  id={item._id}
+                  type="checkbox"
+                  className="cursor-pointer"
+                />
+                {item.title}
+              </td>
               <td>{item.type}</td>
               <td>$ {item.amount}</td>
               <td>{item.date}</td>
