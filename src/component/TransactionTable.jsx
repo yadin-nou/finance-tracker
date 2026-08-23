@@ -113,7 +113,12 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
           ))}
           <tr>
             <td colSpan={3}>Total Balance:</td>
-            <td colSpan={2}>$ {totalBalance}</td>
+            <td
+              colSpan={2}
+              style={{ color: totalBalance > 0 ? "green" : "red" }}
+            >
+              $ {totalBalance}
+            </td>
             <td>{""}</td>
           </tr>
         </tbody>
