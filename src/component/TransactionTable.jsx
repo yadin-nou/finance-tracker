@@ -3,17 +3,21 @@ import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 
-export const TransactionTable = ({ getTranctions, setAddTrans }) => {
-  const [trans, setTrans] = useState([]);
+export const TransactionTable = ({
+  handleGetTransaction,
+  addTrans,
+  setAddTrans,
+}) => {
+  const [transData, setTransData] = useState([]);
 
   const handleDisplay = async () => {
-    const result = await getTranctions();
+    const result = await handleGetTransaction();
     //console.log(result.data);
-    setTrans(result.data);
+    setTransData(result.data);
   };
   useEffect(() => {
     handleDisplay();
-  }, []);
+  }, [addTrans]);
   return (
     <div>
       <div className="d-flex justify-content-between flex-wrap pb-2">
@@ -56,12 +60,13 @@ export const TransactionTable = ({ getTranctions, setAddTrans }) => {
             <th>#</th>
             <th>Title</th>
             <th>Type</th>
-            <th>Amount $</th>
+            <th>Income $</th>
+            <th>Expenses $</th>
             <th>Date</th>
           </tr>
         </thead>
         <tbody>
-          {trans.map((item, key) => (
+          {transData.map((item, key) => (
             <tr key={item._id}>
               <td>{key + 1}</td>
               <td className="d-flex justify-content-left">
@@ -74,8 +79,15 @@ export const TransactionTable = ({ getTranctions, setAddTrans }) => {
                 {item.title}
               </td>
               <td>{item.type}</td>
-              <td>$ {item.amount}</td>
-              <td>{item.date}</td>
+              <td style={{ color: "green" }}>
+                {" "}
+                {item?.type === "income" ? "$ " + item.amount : "N/A"}
+              </td>
+              <td style={{ color: "wheat" }}>
+                {" "}
+                {item?.type === "expenses" ? "$ " + item.amount : "N/A"}
+              </td>
+              <td>{new Date(item.date).toLocaleDateString("en-AU")}</td>
             </tr>
           ))}
         </tbody>

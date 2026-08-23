@@ -9,7 +9,8 @@ import { useUser } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { removeLocalStorage } from "../localstorage/localStorage";
 import { TransactionTable } from "./TransactionTable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { RiCloseLargeFill } from "react-icons/ri";
 
 export const Transaction = ({ addTransactions, getTranctions }) => {
   const navi = useNavigate();
@@ -63,24 +64,26 @@ export const Transaction = ({ addTransactions, getTranctions }) => {
       setSpinner(false);
       toast.error("Session has expired!!, Please re-login");
       removeLocalStorage("jwtAccess");
+      setAddTrans(true);
       setUser({});
       navi("/login");
     } else {
       setSpinner(false);
       setUserData(emptyData);
+      setAddTrans(false);
       toast.success(result.message);
     }
   };
-
-  // const handleDisplayData = async () => {
-  //   const tranData = await getTranctions();
-  //   return tranData;
-  // };
+  const handleGetTransaction = async () => {
+    const tranData = await getTranctions();
+    return tranData;
+  };
 
   return (
     <div className="position-relative">
       <TransactionTable
-        getTranctions={getTranctions}
+        handleGetTransaction={handleGetTransaction}
+        addTrans={addTrans}
         setAddTrans={setAddTrans}
         className="z-1"
         style={{ pointerEvents: "none" }}
@@ -101,7 +104,7 @@ export const Transaction = ({ addTransactions, getTranctions }) => {
                   variant="danger"
                   onClick={() => setAddTrans(false)}
                 >
-                  Cancel
+                  <RiCloseLargeFill />
                 </Button>
               </div>
             </div>
