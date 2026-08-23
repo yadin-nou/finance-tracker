@@ -3,19 +3,12 @@ import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import useFormHook from "../hooks/useFormHook";
+import { useUser } from "../context/userContext";
 
-export const TransactionTable = ({
-  handleGetTransaction,
-  addTrans,
-  setAddTrans,
-}) => {
-  const [transData, setTransData] = useState([]);
+export const TransactionTable = ({ addTrans, setAddTrans }) => {
+  //const [transData, setTransData] = useState([]);
+  const { transData, getTranctions } = useUser([]);
   const { userData, setUserData } = useFormHook([]);
-  const handleDisplay = async () => {
-    const result = await handleGetTransaction();
-    //console.log(result.data);
-    setTransData(result.data);
-  };
 
   const handleCheckbox = (e) => {
     const { name, checked } = e.target;
@@ -36,7 +29,7 @@ export const TransactionTable = ({
   };
 
   useEffect(() => {
-    handleDisplay();
+    getTranctions();
   }, [addTrans]);
   return (
     <div>
@@ -82,8 +75,8 @@ export const TransactionTable = ({
             <th>#</th>
             <th>Title</th>
             <th>Type</th>
-            <th>Income $</th>
-            <th>Expenses $</th>
+            <th>In $</th>
+            <th>Out $</th>
             <th>Date</th>
           </tr>
         </thead>
@@ -115,6 +108,11 @@ export const TransactionTable = ({
               <td>{new Date(item.date).toLocaleDateString("en-AU")}</td>
             </tr>
           ))}
+          <tr>
+            <td colSpan={3}>Total Balance:</td>
+            <td colSpan={2}>Total Balance:</td>
+            <td>{""}</td>
+          </tr>
         </tbody>
       </Table>
       <div className="d-grid">

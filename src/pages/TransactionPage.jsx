@@ -2,10 +2,7 @@ import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { Transaction } from "../component/Transaction";
-import {
-  addTransactionAxois,
-  getTransactionAxios,
-} from "../axiosHelper/axiosConnection";
+import { addTransactionAxois } from "../axiosHelper/axiosConnection";
 
 const TransactionPage = () => {
   const addTransactions = async (userData) => {
@@ -17,14 +14,14 @@ const TransactionPage = () => {
     }
   };
 
-  const getTranctions = async () => {
-    try {
-      const response = await getTransactionAxios();
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getTranctions = async () => {
+  //   try {
+  //     const response = await getTransactionAxios();
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <div className="d-flex">
       <Container
@@ -35,10 +32,7 @@ const TransactionPage = () => {
         {" "}
         <Row>
           <Col>
-            <Transaction
-              addTransactions={addTransactions}
-              getTranctions={getTranctions}
-            />
+            <Transaction addTransactions={addTransactions} />
           </Col>
         </Row>
       </Container>

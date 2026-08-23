@@ -74,15 +74,10 @@ export const Transaction = ({ addTransactions, getTranctions }) => {
       toast.success(result.message);
     }
   };
-  const handleGetTransaction = async () => {
-    const tranData = await getTranctions();
-    return tranData;
-  };
 
   return (
     <div className="position-relative">
       <TransactionTable
-        handleGetTransaction={handleGetTransaction}
         addTrans={addTrans}
         setAddTrans={setAddTrans}
         className="z-1"
