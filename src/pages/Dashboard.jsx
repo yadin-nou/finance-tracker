@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-function Dashboard() {
+const Dashboard = () => {
   return (
     <div className="d-flex">
       <Container
@@ -17,6 +17,6 @@ function Dashboard() {
       </Container>
     </div>
   );
-}
+};
 
 export default Dashboard;

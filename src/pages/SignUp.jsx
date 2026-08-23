@@ -5,7 +5,7 @@ import { UserForms } from "../component/UserForms";
 import { insertUser } from "../axiosHelper/axiosConnection";
 import { toast } from "react-toastify";
 
-function SignUp() {
+const SignUp = () => {
   //const [emptyForm, setEmptyForm] = useState({});
 
   const signUpUser = async (userData) => {
@@ -35,6 +35,6 @@ function SignUp() {
       </Container>
     </div>
   );
-}
+};
 
 export default SignUp;

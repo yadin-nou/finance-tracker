@@ -72,3 +72,14 @@ export const addTransactionAxois = async (data) => {
   };
   return processAPI(obj);
 };
+
+export const getTransactionAxios = async () => {
+  const obj = {
+    method: "get",
+    url: urlEPTransaction,
+    headers: {
+      Authorization: getLocalStorage("jwtAccess"),
+    },
+  };
+  return processAPI(obj);
+};

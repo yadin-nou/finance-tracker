@@ -31,7 +31,11 @@ export const HeaderLayouts = () => {
       expanded={expanded}
     >
       <Container>
-        <Navbar.Brand href="#home">Financial Tracker</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <div className="d-flex justify-content-center align-item-center">
+            FT : {user?.name ? "Welcome to " + user?.name?.toUpperCase() : ""}
+          </div>
+        </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
           onClick={() => setExpanded(expanded ? false : true)}

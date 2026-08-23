@@ -2,12 +2,24 @@ import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { Transaction } from "../component/Transaction";
-import { addTransactionAxois } from "../axiosHelper/axiosConnection";
+import {
+  addTransactionAxois,
+  getTransactionAxios,
+} from "../axiosHelper/axiosConnection";
 
-function TransactionPage() {
+const TransactionPage = () => {
   const addTransactions = async (userData) => {
     try {
       const response = await addTransactionAxois(userData);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getTranctions = async () => {
+    try {
+      const response = await getTransactionAxios();
       return response;
     } catch (error) {
       console.log(error);
@@ -23,12 +35,15 @@ function TransactionPage() {
         {" "}
         <Row>
           <Col>
-            <Transaction addTransactions={addTransactions} />
+            <Transaction
+              addTransactions={addTransactions}
+              getTranctions={getTranctions}
+            />
           </Col>
         </Row>
       </Container>
     </div>
   );
-}
+};
 
 export default TransactionPage;

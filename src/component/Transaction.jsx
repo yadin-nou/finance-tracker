@@ -8,9 +8,9 @@ import useSpinner from "../hooks/useSpinner";
 import { useUser } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { removeLocalStorage } from "../localstorage/localStorage";
-import { TransactionTable } from "./Layout/TransactionTable";
+import { TransactionTable } from "./TransactionTable";
 
-export const Transaction = ({ addTransactions }) => {
+export const Transaction = ({ addTransactions, getTranctions }) => {
   const navi = useNavigate();
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const { spinner, setSpinner } = useSpinner(false);
@@ -48,7 +48,6 @@ export const Transaction = ({ addTransactions }) => {
       value: userData.date,
     },
   ];
-
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setSpinner(true);
@@ -71,9 +70,14 @@ export const Transaction = ({ addTransactions }) => {
     }
   };
 
+  // const handleDisplayData = async () => {
+  //   const tranData = await getTranctions();
+  //   return tranData;
+  // };
+
   return (
     <div>
-      <TransactionTable />
+      <TransactionTable getTranctions={getTranctions} />
       <Form onSubmit={handleOnSubmit} style={{ display: "none" }}>
         <Form.Group className="mb-3">
           <Form.Label>Type</Form.Label>
