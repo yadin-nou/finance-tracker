@@ -103,36 +103,43 @@ export const Transaction = ({ addTransactions, getTranctions }) => {
                 </Button>
               </div>
             </div>
-            <Form.Group className="mb-3">
-              <Form.Label>Type</Form.Label>
-              <Form.Select
-                name="type"
-                value={userData.type}
-                required
-                onChange={handleOnChange}
-              >
-                <option value="">--Select Type--</option>
-                <option value="income">income</option>
-                <option value="expenses">expenses</option>
-              </Form.Select>
-            </Form.Group>
-            {fromTPL.map((frm) => (
-              <FormTemplate key={frm.name} {...frm} onChange={handleOnChange} />
-            ))}
-            <div className="d-grid">
-              {/* Explicitly set type="submit" */}
-              {spinner && (
-                <Spinner
-                  animation="border"
-                  variant="primary"
-                  style={{ margin: "0 auto" }}
+            <hr />
+            <div className="border p-3">
+              <Form.Group className="mb-3">
+                <Form.Label>Type</Form.Label>
+                <Form.Select
+                  name="type"
+                  value={userData.type}
+                  required
+                  onChange={handleOnChange}
+                >
+                  <option value="">--Select Type--</option>
+                  <option value="income">income</option>
+                  <option value="expenses">expenses</option>
+                </Form.Select>
+              </Form.Group>
+              {fromTPL.map((frm) => (
+                <FormTemplate
+                  key={frm.name}
+                  {...frm}
+                  onChange={handleOnChange}
                 />
-              )}
-              {!spinner && (
-                <Button type="submit" variant="primary">
-                  Add
-                </Button>
-              )}
+              ))}
+              <div className="d-grid">
+                {/* Explicitly set type="submit" */}
+                {spinner && (
+                  <Spinner
+                    animation="border"
+                    variant="primary"
+                    style={{ margin: "0 auto" }}
+                  />
+                )}
+                {!spinner && (
+                  <Button type="submit" variant="primary">
+                    Add
+                  </Button>
+                )}
+              </div>
             </div>
           </Form>
         </div>
