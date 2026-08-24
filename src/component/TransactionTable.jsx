@@ -9,9 +9,9 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
   //const [transData, setTransData] = useState([]);
   const { transData, setTransData, getTranctions } = useUser([]);
   const { userData, setUserData } = useFormHook([]);
-  const [trans, setTrans] = useState([]);
+  const [transaction, setTransation] = useState([]);
 
-  const totalBalance = transData.reduce((acc, trans) => {
+  const totalBalance = transaction.reduce((acc, trans) => {
     return trans.type === "income" ? acc + trans.amount : acc - trans.amount;
   }, 0);
   const handleCheckbox = (e) => {
@@ -33,7 +33,11 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
   };
   const handleSearch = (e) => {
     const { value } = e.target;
-    setTrans(transData.filter((item) => item.title.includes(value)));
+    setTransation(
+      transData.filter((item) =>
+        item.title.toLowerCase().includes(value.toLowerCase()),
+      ),
+    );
   };
   useEffect(() => {
     getTranctions();
@@ -42,7 +46,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
   //the first time trans state update the original data by transData,
   //otherwise state transData render late
   useEffect(() => {
-    setTrans(transData);
+    setTransation(transData);
   }, [transData]);
 
   return (
@@ -101,7 +105,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
           </tr>
         </thead>
         <tbody>
-          {trans.map((item, key) => (
+          {transaction.map((item, key) => (
             <tr key={item._id}>
               <td>{key + 1}</td>
               <td className="d-flex justify-content-left">
