@@ -7,8 +7,9 @@ import { useUser } from "../context/userContext";
 
 export const TransactionTable = ({ addTrans, setAddTrans }) => {
   //const [transData, setTransData] = useState([]);
-  const { transData, getTranctions } = useUser([]);
+  const { transData, setTransData, getTranctions } = useUser([]);
   const { userData, setUserData } = useFormHook([]);
+  const [trans, setTrans] = useState([]);
 
   const totalBalance = transData.reduce((acc, trans) => {
     return trans.type === "income" ? acc + trans.amount : acc - trans.amount;
@@ -30,10 +31,20 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
       setUserData(userData.filter((item) => item !== name));
     }
   };
-
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    setTrans(transData.filter((item) => item.title.includes(value)));
+  };
   useEffect(() => {
     getTranctions();
   }, [addTrans]);
+
+  //the first time trans state update the original data by transData,
+  //otherwise state transData render late
+  useEffect(() => {
+    setTrans(transData);
+  }, [transData]);
+
   return (
     <div>
       <div className="d-flex justify-content-between flex-wrap pb-2">
@@ -53,7 +64,13 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
           </Form>
         </div>
         <div>
-          <Form.Control type="text" size="sm" placeholder="Search....." />
+          <Form.Control
+            type="text"
+            size="sm"
+            placeholder="Search....."
+            onChange={handleSearch}
+            name="search"
+          />
         </div>
         <div>
           <Button
@@ -84,7 +101,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
           </tr>
         </thead>
         <tbody>
-          {transData.map((item, key) => (
+          {trans.map((item, key) => (
             <tr key={item._id}>
               <td>{key + 1}</td>
               <td className="d-flex justify-content-left">
@@ -100,13 +117,13 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
                 {item.title}
               </td>
               <td>{item.type}</td>
-              <td style={{ color: "green" }}>
+              <td style={{ color: "#87c387" }}>
                 {" "}
                 {item?.type === "income" ? "$ " + item.amount : "N/A"}
               </td>
-              <td style={{ color: "wheat" }}>
+              <td style={{ color: "rgb(216, 130, 126)" }}>
                 {" "}
-                {item?.type === "expenses" ? "$ " + item.amount : "N/A"}
+                {item?.type === "expenses" ? "-$ " + item.amount : "N/A"}
               </td>
               <td>{new Date(item.date).toLocaleDateString("en-AU")}</td>
             </tr>
