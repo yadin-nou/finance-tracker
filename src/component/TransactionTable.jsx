@@ -36,10 +36,13 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
 
   const handelDeleteTranasction = async (e) => {
     e.preventDefault();
-    const { status, message, data } = await deleteTransactionAxios(userData);
-    toast[status](message + " " + data.deletedCount);
-    setUserData([]);
-    getTranctions();
+    const result = window.confirm("Are you sure want to delete?");
+    if (result) {
+      const { status, message, data } = await deleteTransactionAxios(userData);
+      toast[status](data.deletedCount + " " + message);
+      setUserData([]);
+      getTranctions();
+    }
   };
   const handleSearch = (e) => {
     const { value } = e.target;
