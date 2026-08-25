@@ -38,7 +38,9 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
     e.preventDefault();
     const result = window.confirm("Are you sure want to delete?");
     if (result) {
-      const { status, message, data } = await deleteTransactionAxios(userData);
+      const pendingResp = deleteTransactionAxios(userData);
+      toast.promise(pendingResp, { pending: "Please wait..." });
+      const { status, message, data } = await pendingResp;
       toast[status](data.deletedCount + " " + message);
       setUserData([]);
       getTranctions();
