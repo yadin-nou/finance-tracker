@@ -36,9 +36,10 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
 
   const handelDeleteTranasction = async (e) => {
     e.preventDefault();
-    const { status, message, deleteCount } =
-      await deleteTransactionAxios(userData);
-    toast[status](message + " " + deleteCount);
+    const { status, message, data } = await deleteTransactionAxios(userData);
+    toast[status](message + " " + data.deletedCount);
+    setUserData([]);
+    getTranctions();
   };
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -50,6 +51,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
   };
   useEffect(() => {
     getTranctions();
+    setUserData([]);
   }, [addTrans]);
 
   //the first time trans state update the original data by transData,
