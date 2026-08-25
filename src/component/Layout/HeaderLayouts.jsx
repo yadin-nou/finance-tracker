@@ -22,6 +22,7 @@ export const HeaderLayouts = () => {
     removeLocalStorage("jwtAccess");
     //reset user data
     setUser({});
+    setExpanded(false);
   };
   return (
     <Navbar
