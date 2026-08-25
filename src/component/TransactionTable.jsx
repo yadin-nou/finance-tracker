@@ -12,7 +12,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
   const { transData, setTransData, getTranctions } = useUser([]);
   const { userData, setUserData } = useFormHook([]);
   const [transaction, setTransation] = useState([]);
-
+  const [all, setALL] = useState(false);
   const totalBalance = transaction.reduce((acc, trans) => {
     return trans.type === "income" ? acc + trans.amount : acc - trans.amount;
   }, 0);
@@ -20,16 +20,21 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
     const { name, checked } = e.target;
     if (checked) {
       if (name === "allTrans") {
+        setALL(true);
         setUserData(transData.map((item) => item._id));
         return;
       }
+
       setUserData((prev) => [...prev, name]);
     } else {
       //const id = userData.filter((item) => item !== name);
       if (name === "allTrans") {
         setUserData([]);
+        setALL(false);
         return;
       }
+      userData.length - 1 === 0 && setALL(false);
+
       setUserData(userData.filter((item) => item !== name));
     }
   };
@@ -44,9 +49,12 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
       toast[status](data.deletedCount + " " + message);
       setUserData([]);
       getTranctions();
+      setALL(false);
     }
   };
   const handleSearch = (e) => {
+    setUserData([]);
+    setALL(false);
     const { value } = e.target;
     setTransation(
       transData.filter((item) =>
@@ -78,6 +86,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
                 type="checkbox"
                 className="cursor-pointer"
                 onChange={handleCheckbox}
+                checked={all}
               />
               <label htmlFor="allTrans">Select All</label>
             </div>
