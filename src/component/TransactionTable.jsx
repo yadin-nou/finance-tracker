@@ -4,6 +4,8 @@ import Table from "react-bootstrap/Table";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import useFormHook from "../hooks/useFormHook";
 import { useUser } from "../context/userContext";
+import { deleteTransactionAxios } from "../axiosHelper/axiosConnection";
+import { toast } from "react-toastify";
 
 export const TransactionTable = ({ addTrans, setAddTrans }) => {
   //const [transData, setTransData] = useState([]);
@@ -30,6 +32,13 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
       }
       setUserData(userData.filter((item) => item !== name));
     }
+  };
+
+  const handelDeleteTranasction = async (e) => {
+    e.preventDefault();
+    const { status, message, deleteCount } =
+      await deleteTransactionAxios(userData);
+    toast[status](message + " " + deleteCount);
   };
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -86,6 +95,7 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
           </Button>
         </div>
       </div>
+      <div>Transaction {transaction.length} (s)</div>
       <Table
         striped
         bordered
@@ -146,7 +156,11 @@ export const TransactionTable = ({ addTrans, setAddTrans }) => {
       </Table>
       <div className="d-grid">
         {userData.length > 0 && (
-          <Button type="submit" variant="danger">
+          <Button
+            type="submit"
+            variant="danger"
+            onClick={handelDeleteTranasction}
+          >
             Delete {userData.length} (s)
           </Button>
         )}
