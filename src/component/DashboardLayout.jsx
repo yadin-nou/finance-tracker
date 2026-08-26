@@ -32,8 +32,8 @@ export const DashboardLayout = () => {
     <>
       <div className="d-flex flex-column">
         <InformationLayout {...allData} />
-        <PieChartLayout />
-        <LineChartLayout />
+        <PieChartLayout {...allData} />
+        <LineChartLayout {...allData} />
       </div>
     </>
   );

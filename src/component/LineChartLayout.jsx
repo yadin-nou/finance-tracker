@@ -6,6 +6,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  Cell,
   ResponsiveContainer,
 } from "recharts";
 
@@ -15,6 +16,7 @@ export const LineChartLayout = () => {
     { month: "Feb", expenses: 300, income: 900 },
     { month: "Mar", expenses: 500, income: 850 },
   ];
+  const COLORS = ["#00C49F", "#ff4842ff"];
   return (
     <div>
       <ResponsiveContainer width="100%" height={300}>
@@ -23,8 +25,11 @@ export const LineChartLayout = () => {
           <XAxis dataKey="month" />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" dataKey="income" stroke="#22c55e" />
-          <Line type="monotone" dataKey="expenses" stroke="#ef4444" />
+          <Line type="monotone" dataKey="income" stroke={COLORS[0]} />
+          <Line type="monotone" dataKey="expenses" stroke={COLORS[1]} />
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
         </LineChart>
       </ResponsiveContainer>
     </div>
