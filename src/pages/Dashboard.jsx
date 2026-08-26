@@ -14,7 +14,7 @@ const Dashboard = () => {
         {" "}
         <Row>
           <Col>
-            Dashboard
+            <h2>Dashboard</h2>
             <hr />
             {/* Balance income expanses 
             income trent expanse trent

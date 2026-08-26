@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export const LineChart = () => {
+export const LineChartLayout = () => {
   const data = [
     { month: "Jan", expenses: 400, income: 800 },
     { month: "Feb", expenses: 300, income: 900 },
