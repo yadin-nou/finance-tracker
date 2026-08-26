@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { DashboardLayout } from "../component/DashboardLayout";
 
 const Dashboard = () => {
   return (
@@ -12,7 +13,15 @@ const Dashboard = () => {
       >
         {" "}
         <Row>
-          <Col md="6">Dashboard pages</Col>
+          <Col>
+            Dashboard
+            <hr />
+            {/* Balance income expanses 
+            income trent expanse trent
+             pie chart for
+            both income & expanse */}
+            <DashboardLayout />
+          </Col>
         </Row>
       </Container>
     </div>
