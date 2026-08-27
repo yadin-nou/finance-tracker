@@ -1,10 +1,10 @@
 import {
   PieChart,
   Pie,
-  Cell,
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Cell,
 } from "recharts";
 
 export const PieChartLayout = ({ balance, income, expanse }) => {

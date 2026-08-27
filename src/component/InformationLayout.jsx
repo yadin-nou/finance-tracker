@@ -1,4 +1,3 @@
-import React from "react";
 import { MdAccountBalance } from "react-icons/md";
 import { GiReceiveMoney } from "react-icons/gi";
 import { TbMoneybagMove } from "react-icons/tb";

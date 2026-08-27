@@ -21,9 +21,9 @@ export const DashboardLayout = () => {
     .filter((item) => item.type === "expenses")
     .reduce((acc, item) => acc + item.amount, 0);
 
-  const allData = { balance: balance, income: income, expanse: expanse };
+  const allData = { balance, income, expanse };
 
-  //   console.log(allData);
+  //console.log(transData.date);
   useEffect(() => {
     displayTransaction();
   }, []);
@@ -33,7 +33,7 @@ export const DashboardLayout = () => {
       <div className="d-flex flex-column">
         <InformationLayout {...allData} />
         <PieChartLayout {...allData} />
-        <LineChartLayout {...allData} />
+        <LineChartLayout transData={transData} />
       </div>
     </>
   );

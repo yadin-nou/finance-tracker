@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className="bg-dark" style={{ height: "100vh" }}>
+    <div className="bg-dark" style={{ height: "100%" }}>
       <Container className="bg-dark text-white w-100">
         <Routes>
           <Route path="/" element={<DefaultLayouts />}>
