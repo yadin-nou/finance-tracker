@@ -1,11 +1,13 @@
 import { MdAccountBalance } from "react-icons/md";
 import { GiReceiveMoney } from "react-icons/gi";
 import { TbMoneybagMove } from "react-icons/tb";
+
 export const InformationLayout = ({ balance, income, expanse }) => {
   return (
     <>
       <div>
-        <h4>Information</h4>
+        <h4>Monthly Report</h4>
+
         <div className="d-flex justify-content-between  flex-wrap  text-dark rounded">
           <div
             className="d-flex flex-column align-items-center justify-content-center text-center border bg-white text-warning rounded shadow"
