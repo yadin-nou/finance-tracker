@@ -54,12 +54,11 @@ export const DashboardLayout = () => {
   // console.log(monthArray);
   return (
     <>
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column gap-2">
         <h4>Monthly Report 2026</h4>
         <Form.Select
           aria-label="Default select example"
           onChange={handleGetMonth}
-          style={{ paddingBottom: "10px" }}
         >
           {monthArray.map((item, index) => (
             <option
