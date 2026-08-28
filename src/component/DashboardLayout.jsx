@@ -51,7 +51,7 @@ export const DashboardLayout = () => {
     "November",
     "December",
   ];
-  console.log(monthArray);
+  // console.log(monthArray);
   return (
     <>
       <div className="d-flex flex-column">
@@ -68,7 +68,7 @@ export const DashboardLayout = () => {
             >
               {item}
             </option>
-          ))}
+          ))}{" "}
         </Form.Select>
         <InformationLayout {...allData} />
         <PieChartLayout {...allData} />
