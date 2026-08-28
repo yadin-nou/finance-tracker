@@ -6,8 +6,6 @@ export const InformationLayout = ({ balance, income, expanse }) => {
   return (
     <>
       <div>
-        <h4>Monthly Report</h4>
-
         <div className="d-flex justify-content-between  flex-wrap  text-dark rounded">
           <div
             className="d-flex flex-column align-items-center justify-content-center text-center border bg-white text-warning rounded shadow"
