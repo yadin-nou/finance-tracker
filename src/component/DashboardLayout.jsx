@@ -59,6 +59,7 @@ export const DashboardLayout = () => {
         <Form.Select
           aria-label="Default select example"
           onChange={handleGetMonth}
+          style={{ paddingBottom: "10px" }}
         >
           {monthArray.map((item, index) => (
             <option
@@ -70,7 +71,7 @@ export const DashboardLayout = () => {
             </option>
           ))}
         </Form.Select>
-        <br />
+
         <InformationLayout {...allData} />
         <PieChartLayout {...allData} />
         <LineChartLayout viewByMonth={viewByMonth} />
