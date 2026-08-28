@@ -1,12 +1,14 @@
 import axios from "axios";
 import { getLocalStorage } from "../localstorage/localStorage";
-const urlEP = import.meta.env.PROD
-  ? "/api/v1/users"
-  : "http://localhost:8000/api/v1/users";
+// const urlEP = import.meta.env.PROD
+const urlEP = import.meta.env.VITE_ROOT_URL + "/api/v1/users";
+// ? "/api/v1/users"
+// : "http://localhost:8000/api/v1/users";
 
-const urlEPTransaction = import.meta.env.PROD
-  ? "/api/v1/transaction"
-  : "http://localhost:8000/api/v1/transaction";
+// const urlEPTransaction = import.meta.env.PROD
+const urlEPTransaction = import.meta.env.VITE_ROOT_URL + "/api/v1/transaction";
+// ? "/api/v1/transaction"
+// : "http://localhost:8000/api/v1/transaction";
 
 //alert(urlEP, urlEPTransaction);
 const processAPI = async ({ method, url, data, headers }) => {
