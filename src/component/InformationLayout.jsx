@@ -28,7 +28,7 @@ export const InformationLayout = ({ balance, income, expanse }) => {
             style={{ width: "30%" }}
           >
             <TbMoneybagMove style={{ fontSize: "4rem" }} />
-            <h6>Expanse</h6>
+            <h6>Expenses</h6>
             <p style={{ fontSize: "1.5rem" }}>$ {expanse}</p>
           </div>
         </div>

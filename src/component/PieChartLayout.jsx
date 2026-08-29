@@ -11,7 +11,7 @@ export const PieChartLayout = ({ balance, income, expanse }) => {
   const data = [
     { name: "Balance", value: balance },
     { name: "Income", value: income },
-    { name: "Expanses", value: expanse },
+    { name: "Expenses", value: expanse },
   ];
 
   const COLORS = ["#FFBB28", "#00C49F", "#ff4842ff"];
