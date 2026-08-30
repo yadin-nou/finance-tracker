@@ -6,10 +6,13 @@ import useFormHook from "../hooks/useFormHook";
 import { useUser } from "../context/userContext";
 import { deleteTransactionAxios } from "../axiosHelper/axiosConnection";
 import { toast } from "react-toastify";
+import { getTranctions, transData } from "../redux/reduxGetTransaction";
 
 export const TransactionTable = ({ addTrans, setAddTrans }) => {
   //const [transData, setTransData] = useState([]);
-  const { transData, setTransData, getTranctions } = useUser([]);
+  //const { transData, setTransData, getTranctions } = useUser([]);
+  //const { transData, setTransData, getTranctions } = useUser([]);
+
   const { userData, setUserData } = useFormHook([]);
   const [transaction, setTransation] = useState([]);
   const [all, setALL] = useState(false);
