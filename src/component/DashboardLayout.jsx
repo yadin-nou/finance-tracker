@@ -4,8 +4,10 @@ import { LineChartLayout } from "./LineChartLayout";
 import { InformationLayout } from "./InformationLayout";
 import { useUser } from "../context/userContext";
 import Form from "react-bootstrap/Form";
+import { ReduxTransaction } from "../redux/reduxGetTransaction";
 export const DashboardLayout = () => {
-  const { transData, setTransData, getTranctions } = useUser();
+  //const { transData,getTranctions } = useUser();
+  const { transData, getTranctions } = ReduxTransaction();
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const displayTransaction = async () => {
     return await getTranctions();
@@ -17,7 +19,7 @@ export const DashboardLayout = () => {
   const viewByMonth = transData.filter(
     (item) => new Date(item.date).getMonth() + 1 === +month,
   );
-  console.log(month);
+  //console.log(month);
   const balance = viewByMonth.reduce(
     (acc, item) =>
       item.type === "income" ? acc + item.amount : acc - item.amount,
@@ -59,12 +61,13 @@ export const DashboardLayout = () => {
         <Form.Select
           aria-label="Default select example"
           onChange={handleGetMonth}
+          defaultValue={month}
         >
           {monthArray.map((item, index) => (
             <option
               key={index + 1}
               value={index + 1}
-              selected={index + 1 === +month}
+              // selected={index + 1 === +month}
             >
               {item}
             </option>

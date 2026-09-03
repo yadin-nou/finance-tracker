@@ -12,7 +12,7 @@ import { TransactionTable } from "./TransactionTable";
 import { useEffect, useState } from "react";
 import { RiCloseLargeFill } from "react-icons/ri";
 
-export const Transaction = ({ addTransactions, getTranctions }) => {
+export const Transaction = ({ addTransactions }) => {
   const navi = useNavigate();
   const { userData, setUserData, handleOnChange } = useFormHook({});
   const { spinner, setSpinner } = useSpinner(false);
