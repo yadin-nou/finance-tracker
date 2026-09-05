@@ -37,7 +37,7 @@ function App() {
             <Route index element={<LoginPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="confirm-email" element={<ConfirmEmail />} />
+            <Route path="email_confirm" element={<ConfirmEmail />} />
             <Route
               path="dashboard"
               element={
