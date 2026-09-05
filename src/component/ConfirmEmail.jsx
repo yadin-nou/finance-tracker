@@ -18,8 +18,10 @@ const ConfirmEmail = () => {
       .then((res) => res.json())
       .then((data) => setStatus(data.status))
       .catch(() => setStatus("error"));
+
+    console.log(urlEP + "email_confirm?token=" + token);
   }, [searchParams]);
-  console.log(urlEP + "email_confirm?token=" + token);
+
   return <div>This link is invalid or has expired.</div>;
 };
 
