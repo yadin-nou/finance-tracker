@@ -19,10 +19,8 @@ const ConfirmEmail = () => {
       .then((data) => setStatus(data.status))
       .catch(() => setStatus("error"));
   }, [searchParams]);
-
-  if (status === "loading") return <p>Confirming your email...</p>;
-  if (status === "success") return <p>Email confirmed! You can now log in.</p>;
-  return <p>This link is invalid or has expired.</p>;
+  console.log(`${urlEP}email_confirm?token=${token}`);
+  return <div>This link is invalid or has expired.</div>;
 };
 
 export default ConfirmEmail;
