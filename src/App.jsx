@@ -11,6 +11,7 @@ import { Auth } from "./auth/Auth";
 import { useUser } from "./context/userContext";
 import { autoLogin } from "./utils/users";
 import TransactionPage from "./pages/TransactionPage";
+import ConfirmEmail from "./component/ConfirmEmail";
 function App() {
   const navi = useNavigate();
   const { user, setUser } = useUser();
@@ -36,6 +37,7 @@ function App() {
             <Route index element={<LoginPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
+            <Route path="confirm-email" element={<ConfirmEmail />} />
             <Route
               path="dashboard"
               element={
