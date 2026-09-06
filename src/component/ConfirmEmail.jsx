@@ -1,28 +1,32 @@
 // src/pages/ConfirmEmail.jsx
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useUser } from "../context/userContext";
 
 const ConfirmEmail = () => {
-  // const [searchParams] = useSearchParams();
-  // const [status, setStatus] = useState("loading");
-  // const urlEP = import.meta.env.VITE_ROOT_URL + "/api/v1/users/";
-  // useEffect(() => {
-  //   const token = searchParams.get("token");
+  const [searchParams] = useSearchParams();
+  const urlEP = import.meta.env.VITE_ROOT_URL + "/api/v1/users/";
+  const token = searchParams.get("token");
+  const navi = useNavigate();
+  const { user, setUser } = useUser();
 
-  //   if (!token) {
-  //     setStatus("error");
-  //     return;
-  //   }
+  useEffect(() => {
+    user?._id && navi("/dashboard");
+    //when variable change, use effect re-run
+  }, [user?._id, navi]);
 
-  //   fetch(`${urlEP}email_confirm?token=${token}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setStatus(data.status))
-  //     .catch(() => setStatus("error"));
-
-  //   urlEP + "email_confirm?token=" + token;
-  // }, [searchParams]);
-
-  return <div>This link is invalid or has expired.</div>;
+  const link = urlEP + "email_confirm?token=" + token;
+  return (
+    <div className="d-flex justify-content-center">
+      <p className="fs-3">
+        Please{" "}
+        <a href={link} style={{ color: "#e546b5ff" }}>
+          click here
+        </a>{" "}
+        to activate.
+      </p>
+    </div>
+  );
 };
 
 export default ConfirmEmail;
