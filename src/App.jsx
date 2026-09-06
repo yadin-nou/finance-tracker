@@ -11,10 +11,13 @@ import { Auth } from "./auth/Auth";
 import { useUser } from "./context/userContext";
 import { autoLogin } from "./utils/users";
 import TransactionPage from "./pages/TransactionPage";
+import { useLocation } from "react-router-dom";
 import ConfirmEmail from "./component/ConfirmEmail";
 function App() {
   const navi = useNavigate();
+  //const location = useLocation();
   const { user, setUser } = useUser();
+  //const publicRoutes = ["/login", "/signup", "/email_confirm", "/"];
   useEffect(() => {
     //when user not avairrable by refreshing page or new tap or first load
     //new loging start execute by function loadingUser
@@ -24,6 +27,9 @@ function App() {
   const loadingUser = async () => {
     //update user to avairrable in every page
     const user = await autoLogin();
+    // if (!user?._id && !publicRoutes.includes(location.pathname)) {
+    //   navi("/login");
+    // }
     !user?._id && navi("/login");
     //console.log(user);
     setUser(user);
