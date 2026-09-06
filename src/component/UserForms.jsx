@@ -6,12 +6,14 @@ import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import useFormHook from "../hooks/useFormHook";
 import useSpinner from "../hooks/useSpinner";
+import { useEffect } from "react";
 
 export const UserForms = ({ signUpUser }) => {
   //const [userData, setUserData] = useState({});
   const { userData, setUserData, handleOnChange } = useFormHook({});
-  // const [spinner, setSpinner] = useState(false);
   const { spinner, setSpinner } = useSpinner(false);
+  const [showResend, setShowResend] = useState(false);
+  const [count, setCount] = useState(0);
   const emptyData = {
     name: "",
     email: "",
@@ -75,9 +77,22 @@ export const UserForms = ({ signUpUser }) => {
       setSpinner(false);
       setUserData(emptyData);
       toast.success(result.message);
+      setShowResend(true);
+      setCount(60);
     }
   };
+  useEffect(() => {
+    if (count === 0) {
+      setShowResend(false);
+      return;
+    }
 
+    const interval = setInterval(() => {
+      console.log(count);
+      setCount((prev) => prev - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [count]);
   return (
     <div>
       <Form onSubmit={handleOnSubmit}>
@@ -100,6 +115,15 @@ export const UserForms = ({ signUpUser }) => {
           )}
         </div>
       </Form>
+      {showResend && (
+        <div className="text-warning pt-3">
+          Haven't recevied the confirmation email yet , Please check in Junk or
+          Spam inbox as well.
+          <Button className="text-primary" variant="warning">
+            Resend ({count > 0 ? count : ""})
+          </Button>{" "}
+        </div>
+      )}
     </div>
   );
 };
