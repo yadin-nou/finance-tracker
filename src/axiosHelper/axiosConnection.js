@@ -101,7 +101,7 @@ export const deleteTransactionAxios = async (data) => {
 
 export const resendEmail = async (data) => {
   const obj = {
-    method: "get",
+    method: "post",
     url: urlEP + "/resendEmail",
     data,
   };

@@ -81,7 +81,7 @@ export const UserForms = ({ signUpUser }) => {
       toast.success(result.message);
       setShowResend(true);
       setEmailData(result.emailData);
-      setCount(60);
+      setCount(120);
     }
   };
   const handelResendEmail = async (e) => {
@@ -100,7 +100,7 @@ export const UserForms = ({ signUpUser }) => {
     }
 
     const interval = setInterval(() => {
-      console.log(count);
+      //console.log(count);
       setCount((prev) => prev - 1);
     }, 1000);
     return () => clearInterval(interval);
