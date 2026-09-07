@@ -98,3 +98,12 @@ export const deleteTransactionAxios = async (data) => {
   };
   return processAPI(obj);
 };
+
+export const resendEmail = async (data) => {
+  const obj = {
+    method: "get",
+    url: urlEP + "/resendEmail",
+    data,
+  };
+  return processAPI(obj);
+};

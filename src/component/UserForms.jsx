@@ -7,6 +7,7 @@ import Spinner from "react-bootstrap/Spinner";
 import useFormHook from "../hooks/useFormHook";
 import useSpinner from "../hooks/useSpinner";
 import { useEffect } from "react";
+import { resendEmail } from "../axiosHelper/axiosConnection";
 
 export const UserForms = ({ signUpUser }) => {
   //const [userData, setUserData] = useState({});
@@ -14,6 +15,7 @@ export const UserForms = ({ signUpUser }) => {
   const { spinner, setSpinner } = useSpinner(false);
   const [showResend, setShowResend] = useState(false);
   const [count, setCount] = useState(0);
+  const [emailData, setEmailData] = useState({});
   const emptyData = {
     name: "",
     email: "",
@@ -78,7 +80,17 @@ export const UserForms = ({ signUpUser }) => {
       setUserData(emptyData);
       toast.success(result.message);
       setShowResend(true);
+      setEmailData(result.emailData);
       setCount(60);
+    }
+  };
+  const handelResendEmail = async (e) => {
+    e.preventDefault();
+    const resent = await resendEmail(emailData);
+    if (resent?.status === "success") {
+      toast.success(resent.message);
+      setCount(0);
+      setShowResend(false);
     }
   };
   useEffect(() => {
@@ -119,7 +131,11 @@ export const UserForms = ({ signUpUser }) => {
         <div className="text-warning pt-3">
           Haven't recevied the confirmation email yet , Please check in Junk or
           Spam inbox as well.
-          <Button className="text-primary" variant="warning">
+          <Button
+            className="text-primary"
+            variant="warning"
+            onClick={handelResendEmail}
+          >
             Resend ({count > 0 ? count : ""})
           </Button>{" "}
         </div>
