@@ -1,1 +1,244 @@
-## Finance Tracker
+# Financial Tracker Application
+
+This project is about the Financial Tracker to users who spend money every day. This will show every transaction of their expense and growing base on date. In addition, users are able to delete their translation. Users can view the Link graph based on their income, net worth and expense base on date.
+
+![Websute Screenshort](./src/ft-tracker.png)
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#featuers)
+- [Technoloies Used](#technologies-used)
+- [How to Use](#how-to-use)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Introduction
+
+This project is build with React JS, Node.js+express.js, MongoDB and deployed via GitHub.
+
+[Visit Live Website](https://finance-tracker-nine-smoky.vercel.app)
+
+## Featuers
+
+- **Responsive Design**:
+
+## Technologies used
+
+- ## **Frontend**:
+  - React JS
+  - Contact API
+  - Redux
+  - Resend or Nodemailer
+  - Bootstrap in React
+  - React-Toastify
+  - React-icon
+  - React API call endpoint axios
+- **REST API**:
+  - Postman for tesing
+  - REST extention install in VS-code
+- **Backend**:
+  - Node.js, express.js
+  - JWT decoded
+- **Database**:
+  - MongoDB
+- ## **Deployment**
+  - Github, vercel or render
+
+## How to use?
+
+To set up this project in your device locally, please follow the steps:
+
+1.  **Clone the respository**:
+    run the following command in your terminal:
+    > ```
+    >   git clone https://github.com/yadin-nou/backend-ft
+    >   git clone https://github.com/yadin-nou/finance-tracker
+    > ```
+2.  **Navigate to the project directory**:
+    > ```
+    >   cd yadin-nou
+    > ```
+3.  **Install Dependencies**:
+    - ### Backend
+      > ```
+      > yarn add express.js
+      > ```
+      >
+      > ```
+      > yarn add nodemon
+      > ```
+      >
+      > ```
+      > yarn add cors
+      > ```
+      >
+      > ```
+      > yarn add bcrypt
+      > ```
+      >
+      > ```
+      > yarn add moongoose
+      > ```
+      >
+      > ```
+      > yarn add morgan
+      > ```
+    - ### Frontend
+      > ```
+      > yarn add axios
+      > ```
+      >
+      > ```
+      > yarn add booststrap bootstrap
+      > ```
+      >
+      > ```
+      > yarn add react-toastify
+      > ```
+      >
+      > ```
+      > yarn add ract-icon
+      > ```
+      >
+      > ```
+      > yarn add rect-router-dom
+      > ```
+      >
+      > ```
+      > yarn add jsonwebtoken
+      > ```
+4.  **Run the development server**:
+    > ```
+    >   yarn dev
+    > ```
+
+## Usage
+
+- Postman for tesing
+- REST extention rest.http
+
+## API Endpoints
+
+- USER Endpoint
+  - /api/v1/users/email_confirm as Get
+  - /api/v1/users/resendEmail as Post
+  - /api/v1/users/signup as Post
+  - /api/v1/users/login as Post
+  - /api/v1/users/ as Get
+- Transaction Endpoints
+  - /api/v1/transaction/ as Post
+  - /api/v1/transaction/ as Get
+  - /api/v1/transaction/ as Delete
+
+## Enviroment Variables
+
+Environment variables is added t server.
+
+## Project Workflow
+
+- **Trasaction Page**:
+  - Create trasaction form
+    - type (income,expense)
+    - description
+    - amount
+    - date
+  - Validate form
+  - Handle adding transaction into Database
+  - Create controller
+  - Auth & Middleware
+  - Receive data and userId
+  - Response message
+- **Display Transaction to Table**
+  - Create getTrasaction Model
+  - Create getTrasaction fuction in Transaction Router
+  - REST API test
+  - Create table component
+  - create API call Axios to server
+  - Display data in table list
+
+## Project Structure
+
+```
+FT Backend
+|-- public
+|-- src
+| |-- config
+| | |-- db.config.js
+| |-- midlewares
+| | |-- authMiddleware.js
+| | |-- errorMiddleware.js
+| |-- models
+| | |-- userModel.js
+| | |-- userSchema.js
+| | |-- transactionModel.js
+| | |-- transactionSchema.js
+| |-- nodemailer
+| | |-nodeMailer.js
+| |-- router
+| | |-userRouter.js
+| | |-transactionRouter.js
+| |-- utils
+| | |-pwdHashEncryption.js
+| | |-jwt.js
+|--rest.http
+|--server.js
+|--.env
+
+```
+
+```
+FT Frontend
+|-- public
+|-- src
+| |-- assets
+| | |--img
+| |-- auth
+| | |--Auth.js
+| |-- axiosHelper
+| | |-- axiosConnection.js
+| |-- component
+| | |--confirmEmail.jsx
+| | |--DashbaordLayout.jsx
+| | |--FormTemplate.jsx
+| | |--InfomationLayout.jsx
+| | |--LineChartLayout.jsx
+| | |--LoginFormLayout.jsx
+| | |--PieChartLayout.jsx
+| | |--TipContent.jsx
+| | |--Transaction.jsx
+| | |--TransactionTable.jsx
+| | |--UserForm.jsx
+| | |--Layout
+| | | |--FormTempalte.jsx
+| | | |--LoginFormLayout.jsx
+| | | |--TipContext.jsx
+| | | |--UserForms.jsx
+| |-- context
+| | |--userContext.js
+| |-- hooks
+| | |--useFormHook.js
+| | |--useSpinner.js
+| |-- pages
+| | |--LoginPage.js
+| | |--SignUp.js
+| | |--Dashboard.js
+| | |--TransactionPage.js
+| |-- redux
+| | |--reduxGetTransaction.js
+| | |--storeTrans.js
+| | |--transactionSlicer.js
+| |-- utils
+| | |--users.js
+|--App.jsx
+|--main.jsx
+```
+
+## Contributing
+
+## License
+
+## Contact
